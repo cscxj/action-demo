@@ -18,8 +18,8 @@ jobs:
       - name: Dump matrix context
         run: echo '${{ toJSON(matrix) }}'
       - name: Dump Python version
-        run: echo '${{ python --version }} --- ${{ python3 --version }}'
+        run: python --version && python3 --version
       - name: Dump Go version
-        run: echo '${{ go version }}'
+        run: go version
       - name: Dump Node version
-        run: echo '${{ node -v }}'
+        run: node -v
