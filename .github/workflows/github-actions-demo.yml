@@ -23,3 +23,5 @@ jobs:
         run: go version
       - name: Dump Node version
         run: node -v
+      - name: Dump npm global packages
+        run: npm list -g
