@@ -17,3 +17,9 @@ jobs:
         run: echo '${{ toJSON(strategy) }}'
       - name: Dump matrix context
         run: echo '${{ toJSON(matrix) }}'
+      - name: Dump Python version
+        run: echo '${{ python --version }} --- ${{ python3 --version }}'
+      - name: Dump Go version
+        run: echo '${{ go version }}'
+      - name: Dump Node version
+        run: echo '${{ node -v }}'
