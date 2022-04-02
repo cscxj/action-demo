@@ -1,17 +1,19 @@
-name: GitHub Actions Demo
+name: Print Actions Context
 on: [push]
 jobs:
-  Explore-GitHub-Actions:
-    runs-on: ubuntu-latest
-    steps:
-      - run: echo "🎉 该工作由${{ github.event_name }}自动触发."
-      - run: echo "🐧 此作业现在正在GitHub托管的 ${{ runner.os }} 服务器上运行！"
-      - run: echo "🔎 分支的名称是${{ github.ref }}，存储库是${{ github.repository }}。"
-      - name: 检查仓库代码
-        uses: actions/checkout@v2
-      - run: echo "💡 ${{ github.repository }}存储库已克隆到运行程序。"
-      - run: echo "🖥️ 工作流现在可以在runner上测试代码了。"
-      - name: 列出存储库中的文件
-        run: |
-          ls ${{ github.workspace }}
-      - run: echo "🍏 此作业的状态为${{ job.status }}。"
+  dump_contexts_to_log:
+  runs-on: ubuntu-latest
+  steps:
+    - name: Dump GitHub context
+      id: github_context_step
+      run: echo '${{ toJSON(github) }}'
+    - name: Dump job context
+      run: echo '${{ toJSON(job) }}'
+    - name: Dump steps context
+      run: echo '${{ toJSON(steps) }}'
+    - name: Dump runner context
+      run: echo '${{ toJSON(runner) }}'
+    - name: Dump strategy context
+      run: echo '${{ toJSON(strategy) }}'
+    - name: Dump matrix context
+      run: echo '${{ toJSON(matrix) }}'
